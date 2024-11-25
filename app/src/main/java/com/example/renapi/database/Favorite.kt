@@ -14,4 +14,5 @@ data class Favorite(
 
     @ColumnInfo(name = "distilleries_name")
     val distilleriesName: String
+
 )

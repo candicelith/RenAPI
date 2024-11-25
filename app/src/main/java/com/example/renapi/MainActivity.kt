@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.renapi.database.Favorite
 import com.example.renapi.database.FavoriteDao
 import com.example.renapi.database.FavoriteRoomDatabase
@@ -90,15 +93,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleLike(distilleriesItem: String, isLiked: Boolean) {
         executorService.execute {
-            val isFavorite = mFavoriteDao.isFavorite(distilleriesItem)
             if (isLiked) {
-                if (isLiked) {
-                    runOnUiThread {
-                        Toast.makeText(this, "Distilleries already in favs", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    mFavoriteDao.insert(Favorite(distilleriesName = distilleriesItem))
-                }
+                mFavoriteDao.insert(Favorite(distilleriesName = distilleriesItem))
             } else {
                 mFavoriteDao.deleteByDistilleriesName(distilleriesItem)
             }

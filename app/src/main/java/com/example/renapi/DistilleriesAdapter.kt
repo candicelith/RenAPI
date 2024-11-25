@@ -42,13 +42,7 @@ class DistilleriesAdapter(
 
         holder.likeIcon.setOnClickListener {
             val newLikeState = !isLiked
-            if (newLikeState) {
-                likedItems.add(distilleriesItem)
-            } else {
-                likedItems.remove(distilleriesItem)
-            }
             onLikeClicked(distilleriesItem, newLikeState)
-            notifyItemChanged(position)
         }
     }
 
